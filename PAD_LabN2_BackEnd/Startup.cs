@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PAD_LabN2_BackEnd.Services;
 using PAD_LabN2_BackEnd.Services.Consumer;
+using PadLabN2_BackEnd.Controllers;
 
 namespace PAD_LabN2_BackEnd
 {
@@ -29,6 +30,17 @@ namespace PAD_LabN2_BackEnd
             services.AddControllers();
             services.AddSingleton<IProducerService, ProducerService>();
             services.AddSingleton<IConsumerService, ConsumerService>();
+            services.AddSingleton<MessageHub>();
+            services.AddCors(options =>
+                options.AddPolicy("AllowAny", builder =>
+                {
+                    builder
+                        .WithOrigins("http://localhost:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                }));
+            services.AddSignalR();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -38,11 +50,14 @@ namespace PAD_LabN2_BackEnd
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("AllowAny");
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
             app.UseStatusCodePages();
+            app.UseSignalR(routes => { routes.MapHub<MessageHub>("/hub"); });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

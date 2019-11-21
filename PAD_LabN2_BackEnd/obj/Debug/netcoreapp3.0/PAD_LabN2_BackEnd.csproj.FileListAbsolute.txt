@@ -35,3 +35,5 @@
 /Users/elias/RiderProjects/PAD_LabN2_BackEnd/PAD_LabN2_BackEnd/bin/Debug/netcoreapp3.0/runtimes/win-x86/native/msvcr120.dll
 /Users/elias/RiderProjects/PAD_LabN2_BackEnd/PAD_LabN2_BackEnd/bin/Debug/netcoreapp3.0/runtimes/win-x86/native/zlib.dll
 /Users/elias/RiderProjects/PAD_LabN2_BackEnd/PAD_LabN2_BackEnd/obj/Debug/netcoreapp3.0/PAD_LabN2_BackEnd.csproj.CopyComplete
+/Users/elias/RiderProjects/PAD_LabN2_BackEnd/PAD_LabN2_BackEnd/bin/Debug/netcoreapp3.0/Newtonsoft.Json.dll
+/Users/elias/RiderProjects/PAD_LabN2_BackEnd/PAD_LabN2_BackEnd/bin/Debug/netcoreapp3.0/System.Net.WebSockets.WebSocketProtocol.dll

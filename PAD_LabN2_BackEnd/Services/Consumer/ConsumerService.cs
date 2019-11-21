@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Confluent.Kafka;
+using PadLabN2_BackEnd.Controllers;
 
 namespace PAD_LabN2_BackEnd.Services.Consumer
 {
     public class ConsumerService: IConsumerService
     {
         List<string> Messages = new List<string>();
+        private MessageHub _messageHub;
         
         ConsumerConfig conf = new ConsumerConfig
         { 
@@ -17,9 +19,12 @@ namespace PAD_LabN2_BackEnd.Services.Consumer
             AutoOffsetReset = AutoOffsetReset.Earliest
         };
 
-        public ConsumerService()
+        public ConsumerService
+        (
+            MessageHub messageHub
+        )
         {
-//            StartConsume(Messages);
+            _messageHub = messageHub;
             Task.Run(async () => { StartConsume(Messages); });
         }
 
@@ -27,8 +32,6 @@ namespace PAD_LabN2_BackEnd.Services.Consumer
         {
             return Messages;
         }
-
-
 
         public void StartConsume(List<string> messageList)
         {
@@ -49,6 +52,7 @@ namespace PAD_LabN2_BackEnd.Services.Consumer
                     {
                         var cr = c.Consume(cts.Token);
                         messageList.Add(cr.Message.Value);
+                        _messageHub.AddMessage(cr.Message.Value);
                         Console.WriteLine($"Consumed message '{cr.Offset}' at: '{cr.TopicPartitionOffset}'.");
                     }
                     catch (ConsumeException e)

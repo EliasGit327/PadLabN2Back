@@ -2,6 +2,7 @@
 using PAD_LabN2_BackEnd.Models;
 using PAD_LabN2_BackEnd.Services;
 using PAD_LabN2_BackEnd.Services.Consumer;
+using PadLabN2_BackEnd.Controllers;
 
 namespace PAD_LabN2_BackEnd.Controllers
 {
@@ -15,16 +16,19 @@ namespace PAD_LabN2_BackEnd.Controllers
         };
 
         private IProducerService _producerService;
-        private IConsumerService _consumerService; 
+        private IConsumerService _consumerService;
+        private MessageHub _messageHub;
 
         public MainController
         (
             IProducerService producerService,
-            IConsumerService consumerService
+            IConsumerService consumerService,
+            MessageHub messageHub
         )
         {
             _producerService = producerService;
             _consumerService = consumerService;
+            _messageHub = messageHub;
         }
 
         [HttpGet()]
@@ -40,6 +44,13 @@ namespace PAD_LabN2_BackEnd.Controllers
         public IActionResult GetDummy()
         {
             return Ok(_dummyData);
+        }
+
+        [HttpGet("notify/{message}")]
+        public IActionResult NotifyMessage(string message)
+        {
+            _messageHub.Notify(message);
+            return Ok();
         }
         
         [HttpGet("messages")]

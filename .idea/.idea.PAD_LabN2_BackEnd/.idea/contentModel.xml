@@ -13,6 +13,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="MainController.cs" t="Include" />
+          <e p="MessageHub.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
           <e p="Message.cs" t="Include" />
