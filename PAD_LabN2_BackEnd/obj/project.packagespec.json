@@ -1,0 +1,49 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Users/elias/RiderProjects/PAD_LabN2_BackEnd/PAD_LabN2_BackEnd/PAD_LabN2_BackEnd.csproj",
+    "projectName": "PAD_LabN2_BackEnd",
+    "projectPath": "/Users/elias/RiderProjects/PAD_LabN2_BackEnd/PAD_LabN2_BackEnd/PAD_LabN2_BackEnd.csproj",
+    "outputPath": "/Users/elias/RiderProjects/PAD_LabN2_BackEnd/PAD_LabN2_BackEnd/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp3.0"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp3.0": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp3.0": {
+      "dependencies": {
+        "Confluent.Kafka": {
+          "target": "Package",
+          "version": "[1.2.2, )"
+        }
+      },
+      "imports": [
+        "net461",
+        "net462",
+        "net47",
+        "net471",
+        "net472",
+        "net48"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
